@@ -1,0 +1,43 @@
+#include <Servo.h>
+
+Servo hipRight;   // Servo 1 - الرجل اليمنى عند الحوض
+Servo hipLeft;    // Servo 2 - الرجل اليسرى عند الحوض
+Servo kneeRight;  // Servo 3 - الركبة اليمنى
+Servo kneeLeft;   // Servo 4 - الركبة اليسرى
+
+void setup() {
+  hipRight.attach(3);    // متصل بـ D3
+  hipLeft.attach(5);     // متصل بـ D5
+  kneeRight.attach(6);   // متصل بـ D6
+  kneeLeft.attach(9);    // متصل بـ D9
+
+  // تثبيت البداية: كل السيرفو على 90
+  hipRight.write(90);
+  hipLeft.write(90);
+  kneeRight.write(90);
+  kneeLeft.write(90);
+  delay(1000);
+}
+
+void loop() {
+  // خطوة بالرجل اليمنى
+  kneeRight.write(60);    // ثني الركبة اليمنى
+  delay(300);
+  hipRight.write(120);    // رفع الرجل اليمنى للأمام
+  delay(300);
+  kneeRight.write(90);    // إنزال الرجل
+  delay(300);
+
+  // خطوة بالرجل اليسرى
+  kneeLeft.write(60);     // ثني الركبة اليسرى
+  delay(300);
+  hipLeft.write(60);      // رفع الرجل اليسرى للأمام
+  delay(300);
+  kneeLeft.write(90);     // إنزال الرجل
+  delay(300);
+
+  // رجوع الوضع الطبيعي
+  hipRight.write(90);
+  hipLeft.write(90);
+  delay(500);
+}
